@@ -1,6 +1,7 @@
 extends Node2D
 
-var speed = 50
+
+var speed = Vector2(50, 50)
 
 # Direction defaults to right
 var direction = Vector2(1, 0) 
@@ -32,3 +33,4 @@ func _process(delta):
 		
 
 	# Move the snake
+	position += (direction * speed) * delta
