@@ -18,6 +18,8 @@ func new_game():
 	$Snake.start()
 	$GameTimer.start()
 	
+	create_coin()
+	
 
 func _on_game_timer_timeout():	
 	$HUD.update_timer()			
@@ -35,5 +37,17 @@ func get_game_area_size():
 		
 		
 func create_coin():
+	var game_area_size = get_game_area_size()
 	var coin = coin_scene.instantiate()
+	
+	var min_x = $GameArea.position.x
+	var min_y = $GameArea.position.y
+	var max_x = game_area_size.x
+	var max_y = game_area_size.y
+	
+	coin.position.x = randf_range(min_x, max_x)
+	coin.position.y = randf_range(min_y, max_y)
+	
+	add_child(coin)
+	
 	
