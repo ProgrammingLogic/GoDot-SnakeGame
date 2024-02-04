@@ -6,6 +6,10 @@ var screen_size
 var center_of_screen
 var game_area
 
+var game_size
+var game_position
+signal outside_bounds
+signal collided
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -16,7 +20,10 @@ func _ready():
 	hide()
 	
 
-func start():
+func start(new_game_size, new_game_position):
+	game_size = new_game_size
+	game_position = new_game_position
+	
 	position = center_of_screen
 	speed = 200
 	show()
@@ -24,34 +31,31 @@ func start():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var new_rotation
-		
+	# Update the velocity based on user input
 	if Input.is_action_pressed("turn_right"):
-		new_rotation = 2 * PI
 		velocity.x = speed * 1
 		velocity.y = 0
 	elif Input.is_action_pressed("turn_left"): 
-		new_rotation = PI
 		velocity.x = speed * -1
 		velocity.y = 0
 	elif Input.is_action_pressed("turn_up"):
-		new_rotation = PI / 2
 		velocity.x = 0
 		velocity.y = speed * -1
 	elif Input.is_action_pressed("turn_down"):
-		new_rotation = (3 * PI) / 2
 		velocity.x = 0
 		velocity.y = speed * 1		
-
-
-	# Move the snake
-	position += velocity * delta
 	
-	if rotation != TYPE_NIL:
-		rotation = new_rotation
+	
+func _physics_process(delta):
+	var collision_info = move_and_collide(velocity * delta)
+	
+	if not collision_info:
+		return
+	
+	collided.emit(collision_info)
 
 
-func move_to_other_side(game_size, game_position):
+func move_to_other_side():
 	# If we are to the right of the game_area
 	if position.x > game_size.x:
 		position.x = game_position.x
@@ -67,22 +71,5 @@ func move_to_other_side(game_size, game_position):
 		position.y = game_position.y + game_size.y
 
 
-#func _on_area_entered(area):
-	#print("collision")
-	#if area == game_area_scene:
-		#print("collision with game area")
-	#elif area == coin_scene:
-		#print("collision with coin")
-
-
-#func _on_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	#print("collision")
-	#if area == game_area_scene:
-		#print("collision with game area")
-	#elif area == coin_scene:
-		#print("collision with coin")
-
-
-func _on_body_entered(body):
-	print("collision")
-
+func _on_outside_bounds():
+	move_to_other_side()
