@@ -1,8 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dk40x74wnkvmc"]
 
 [ext_resource type="Script" path="res://src/Snake.gd" id="1_ahgnr"]
-[ext_resource type="PackedScene" uid="uid://dflaabkdjhmam" path="res://src/coin.tscn" id="2_wqroy"]
-[ext_resource type="PackedScene" uid="uid://cdofk3jv8jmot" path="res://src/main.tscn" id="3_cm6pd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmaqv"]
 size = Vector2(40, 40)
@@ -10,8 +8,6 @@ size = Vector2(40, 40)
 [node name="Snake" type="CharacterBody2D"]
 position = Vector2(16, 16)
 script = ExtResource("1_ahgnr")
-coin_scene = ExtResource("2_wqroy")
-game_area_scene = ExtResource("3_cm6pd")
 metadata/_edit_group_ = true
 
 [node name="SnakeHead" type="ColorRect" parent="."]

@@ -1,8 +1,5 @@
 extends CharacterBody2D
 
-@export var coin_scene: PackedScene
-@export var game_area_scene: PackedScene
-
 var speed = 0
 var screen
 var screen_size
@@ -88,7 +85,4 @@ func move_to_other_side(game_size, game_position):
 
 func _on_body_entered(body):
 	print("collision")
-	if body == game_area_scene.get_node("GameArea/GameAreaCollisionBox"):
-		print("collision with game area")
-	elif body == coin_scene.get_node("CollisionShape2D"):
-		print("collision with coin")
+

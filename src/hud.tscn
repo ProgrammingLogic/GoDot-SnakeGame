@@ -7,7 +7,7 @@
 script = ExtResource("1_2h3vk")
 
 [node name="MenuBackground" type="ColorRect" parent="."]
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_bottom = -945.0
