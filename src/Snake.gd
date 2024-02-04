@@ -1,6 +1,6 @@
 extends Area2D
 
-var speed = 200
+var speed = 0
 var velocity = Vector2(0, 0)
 var screen
 var screen_size
@@ -13,9 +13,13 @@ func _ready():
 	screen_size = screen.get_area()
 	center_of_screen = screen.get_center()
 	
-	position = center_of_screen
+	hide()
 	
-	print(rotation)
+
+func start():
+	position = center_of_screen
+	speed = 200
+	show()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -61,6 +65,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	# If we are above the screen
 	elif position.y < 0:
 		position.y = screen.size.y
-	
 	
 	
