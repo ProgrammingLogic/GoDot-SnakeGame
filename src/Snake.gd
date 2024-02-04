@@ -1,7 +1,9 @@
-extends Area2D
+extends CharacterBody2D
+
+@export var coin_scene: PackedScene
+@export var game_area_scene: PackedScene
 
 var speed = 0
-var velocity = Vector2(0, 0)
 var screen
 var screen_size
 var center_of_screen
@@ -66,3 +68,27 @@ func move_to_other_side(game_size, game_position):
 	# If we are above the game_area
 	elif position.y < game_position.y:
 		position.y = game_position.y + game_size.y
+
+
+#func _on_area_entered(area):
+	#print("collision")
+	#if area == game_area_scene:
+		#print("collision with game area")
+	#elif area == coin_scene:
+		#print("collision with coin")
+
+
+#func _on_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	#print("collision")
+	#if area == game_area_scene:
+		#print("collision with game area")
+	#elif area == coin_scene:
+		#print("collision with coin")
+
+
+func _on_body_entered(body):
+	print("collision")
+	if body == game_area_scene.get_node("GameArea/GameAreaCollisionBox"):
+		print("collision with game area")
+	elif body == coin_scene.get_node("CollisionShape2D"):
+		print("collision with coin")

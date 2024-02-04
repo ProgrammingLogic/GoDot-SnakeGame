@@ -18,7 +18,7 @@ func new_game():
 	$Snake.start()
 	$GameTimer.start()
 	
-	create_coin()
+	create_coin()	
 	
 
 func _on_game_timer_timeout():	
