@@ -65,39 +65,14 @@ func move_to_other_side(game_area):
 	
 	# If we are to the right of the game_area
 	if position.x > game_area_size.x:
-		print("right!")
-		position.x = 0
+		position.x = game_area.position.x
 	# If we are to the left of the game_area
 	elif position.x < game_area.position.x:
-		print("left!")
-		position.x = game_area_size.x
+		position.x = game_area.position.x + game_area_size.x
 	
-	
-	print("Position.y: %d, game_area.position.y: %d" % [position.y, game_area.position.y])
 	# If we are below the game_area 
 	if position.y > game_area_size.y:
-		print("below!")
-		position.y = 0
+		position.y = game_area.position.y
 	# If we are above the game_area
 	elif position.y < game_area.position.y:
-		print("above!")
-		position.y = game_area_size.y
-
-
-func _on_visible_on_screen_notifier_2d_screen_exited():
-	pass
-	## If we are to the right of the screen
-	#if position.x > screen.size.x:
-		#position.x = 0
-	## If we are to the left of the screen
-	#elif position.x < 0:
-		#position.x = screen.size.x
-	#
-	## If we are below the screen 
-	#if position.y > screen.size.y:
-		#position.y = 0
-	## If we are above the screen
-	#elif position.y < 0:
-		#position.y = screen.size.y
-	
-	
+		position.y = game_area.position.y + game_area_size.y
