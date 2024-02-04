@@ -52,27 +52,17 @@ func _process(delta):
 		rotation = new_rotation
 
 
-func move_to_other_side(game_area):
-	var game_area_collision_box = game_area.get_node("GameAreaCollisionBox")
-	var game_area_shape = game_area_collision_box.get_shape()
-	var game_area_rect = game_area_shape.get_rect()
-	var game_area_size = game_area_rect.size
-	
-	var snake_collision_box = $CollisionShape2D
-	var snake_area_shape = snake_collision_box.get_shape()
-	var snake_area_rect = snake_area_shape.get_rect()
-	var snake_size = snake_area_rect.size
-	
+func move_to_other_side(game_size, game_position):
 	# If we are to the right of the game_area
-	if position.x > game_area_size.x:
-		position.x = game_area.position.x
+	if position.x > game_size.x:
+		position.x = game_position.x
 	# If we are to the left of the game_area
-	elif position.x < game_area.position.x:
-		position.x = game_area.position.x + game_area_size.x
+	elif position.x < game_position.x:
+		position.x = game_position.x + game_size.x
 	
 	# If we are below the game_area 
-	if position.y > game_area_size.y:
-		position.y = game_area.position.y
+	if position.y > game_size.y:
+		position.y = game_position.y
 	# If we are above the game_area
-	elif position.y < game_area.position.y:
-		position.y = game_area.position.y + game_area_size.y
+	elif position.y < game_position.y:
+		position.y = game_position.y + game_size.y

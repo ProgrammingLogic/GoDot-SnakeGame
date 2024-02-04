@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cdofk3jv8jmot"]
+[gd_scene load_steps=6 format=3 uid="uid://cdofk3jv8jmot"]
 
 [ext_resource type="PackedScene" uid="uid://dk40x74wnkvmc" path="res://src/snake.tscn" id="1_nrt6m"]
 [ext_resource type="Script" path="res://src/main.gd" id="1_og4uv"]
+[ext_resource type="PackedScene" uid="uid://dflaabkdjhmam" path="res://src/coin.tscn" id="2_oylue"]
 [ext_resource type="PackedScene" uid="uid://c31f8bvmgcfj6" path="res://src/hud.tscn" id="3_14u7c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hec2h"]
@@ -9,6 +10,7 @@ size = Vector2(1920, 944)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_og4uv")
+coin_scene = ExtResource("2_oylue")
 
 [node name="GameTimer" type="Timer" parent="."]
 
