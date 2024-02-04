@@ -29,7 +29,6 @@ func _on_game_area_area_exited(area):
 		
 		
 func get_game_area_size():
-	#var game_area_collision_box = $GameAreaCollisionBox
 	var game_area_shape = $GameArea/GameAreaCollisionBox.get_shape()
 	var game_area_rect = game_area_shape.get_rect()
 	return game_area_rect.size
