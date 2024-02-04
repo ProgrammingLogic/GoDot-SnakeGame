@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://c31f8bvmgcfj6"]
+
+[ext_resource type="Script" path="res://src/hud.gd" id="1_2h3vk"]
+[ext_resource type="FontFile" uid="uid://cql1sn1oiphrc" path="res://assets/fonts/Agane╠Ç 55 (roman).ttf" id="1_3vy2r"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_2h3vk")
+
+[node name="MenuBackground" type="ColorRect" parent="."]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -945.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.290196, 0.345098, 0.34902, 1)
+
+[node name="TimerLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -904.0
+offset_top = -504.0
+offset_right = -688.0
+offset_bottom = -440.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_next = NodePath("../ScoreLabel")
+theme_override_colors/font_color = Color(0.956863, 0.839216, 0.8, 1)
+theme_override_fonts/font = ExtResource("1_3vy2r")
+theme_override_font_sizes/font_size = 64
+text = "Time: 0"
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -624.0
+offset_top = -504.0
+offset_right = -387.0
+offset_bottom = -440.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.956863, 0.839216, 0.8, 1)
+theme_override_fonts/font = ExtResource("1_3vy2r")
+theme_override_font_sizes/font_size = 64
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1

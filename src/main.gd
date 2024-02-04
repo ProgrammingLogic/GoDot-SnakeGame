@@ -12,4 +12,11 @@ func _process(delta):
 
 
 func new_game():
+	$HUD.start()
 	$Snake.start()
+	$GameTimer.start()
+
+
+
+func _on_game_timer_timeout():	
+	$HUD.update_timer()			
