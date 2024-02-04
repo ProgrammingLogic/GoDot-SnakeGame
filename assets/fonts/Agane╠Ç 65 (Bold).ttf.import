@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://dq6nlxvw3b5xf"
+path="res://.godot/imported/Agane╠Ç 65 (Bold).ttf-b6158c6303add893ce6e773f251c3dae.fontdata"
+
+[deps]
+
+source_file="res://assets/fonts/Agane╠Ç 65 (Bold).ttf"
+dest_files=["res://.godot/imported/Agane╠Ç 65 (Bold).ttf-b6158c6303add893ce6e773f251c3dae.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}
