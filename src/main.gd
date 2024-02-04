@@ -15,8 +15,14 @@ func new_game():
 	$HUD.start()
 	$Snake.start()
 	$GameTimer.start()
-
-
+	
 
 func _on_game_timer_timeout():	
 	$HUD.update_timer()			
+
+
+func _on_game_area_area_exited(area):
+	if (area == $Snake):
+		print("snake is outside game area")
+		$Snake.move_to_other_side($GameArea)
+	
