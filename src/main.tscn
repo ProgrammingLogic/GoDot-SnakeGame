@@ -1,16 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdofk3jv8jmot"]
+[gd_scene load_steps=11 format=3 uid="uid://cdofk3jv8jmot"]
 
 [ext_resource type="PackedScene" uid="uid://dk40x74wnkvmc" path="res://src/snake.tscn" id="1_nrt6m"]
 [ext_resource type="Script" path="res://src/main.gd" id="1_og4uv"]
 [ext_resource type="PackedScene" uid="uid://dflaabkdjhmam" path="res://src/coin.tscn" id="2_oylue"]
 [ext_resource type="PackedScene" uid="uid://c31f8bvmgcfj6" path="res://src/hud.tscn" id="3_14u7c"]
+[ext_resource type="PackedScene" uid="uid://ccl3osrr0p24o" path="res://src/snake_body.tscn" id="3_p2n0g"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w584"]
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_13dqm"]
+b = Vector2(0, 944)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_pbsy6"]
+a = Vector2(1920, 944)
+b = Vector2(1920, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_otfwp"]
+b = Vector2(1920, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_8jjxl"]
+a = Vector2(1920, 944)
+b = Vector2(0, 944)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6mxh"]
 size = Vector2(1920, 944)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_og4uv")
 coin_scene = ExtResource("2_oylue")
+snake_body_scene = ExtResource("3_p2n0g")
 
 [node name="GameTimer" type="Timer" parent="."]
 
@@ -21,21 +37,29 @@ color = Color(0.196078, 0.215686, 0.231373, 1)
 
 [node name="HUD" parent="." instance=ExtResource("3_14u7c")]
 
-[node name="GameArea" type="Area2D" parent="."]
+[node name="GameArea" type="StaticBody2D" parent="."]
 position = Vector2(0, 136)
-disable_mode = 1
-collision_mask = 2
+collision_mask = 10
+
+[node name="CollisionLeft" type="CollisionShape2D" parent="GameArea"]
+shape = SubResource("SegmentShape2D_13dqm")
+
+[node name="CollisionRight" type="CollisionShape2D" parent="GameArea"]
+shape = SubResource("SegmentShape2D_pbsy6")
+
+[node name="CollisionTop" type="CollisionShape2D" parent="GameArea"]
+shape = SubResource("SegmentShape2D_otfwp")
+
+[node name="CollisionBottom" type="CollisionShape2D" parent="GameArea"]
+shape = SubResource("SegmentShape2D_8jjxl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameArea"]
 position = Vector2(960, 472)
-shape = SubResource("RectangleShape2D_8w584")
+shape = SubResource("RectangleShape2D_q6mxh")
+disabled = true
 
 [node name="Snake" parent="." instance=ExtResource("1_nrt6m")]
 position = Vector2(616, 408)
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
-[connection signal="area_exited" from="GameArea" to="." method="_on_game_area_area_exited"]
-[connection signal="area_shape_exited" from="GameArea" to="." method="_on_game_area_area_shape_exited"]
-[connection signal="body_exited" from="GameArea" to="." method="_on_game_area_body_exited"]
-[connection signal="body_shape_exited" from="GameArea" to="." method="_on_game_area_body_shape_exited"]
 [connection signal="collided" from="Snake" to="." method="_on_snake_collided"]

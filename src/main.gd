@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var coin_scene: PackedScene
+@export var snake_body_scene: PackedScene
 
 var score
 
@@ -20,8 +21,12 @@ func new_game():
 	
 	$HUD.start()
 	$Snake.start(get_game_area_size(), $GameArea.position)
+	$Snake.right_bounds = $GameArea/CollisionRight
+	$Snake.left_bounds = $GameArea/CollisionLeft
+	$Snake.upper_bounds = $GameArea/CollisionTop
+	$Snake.lower_bounds = $GameArea/CollisionBottom
 	$GameTimer.start()
-	
+	 
 	create_coin()	
 	
 
@@ -48,11 +53,8 @@ func create_coin():
 	coin.position.y = randf_range(min_y, max_y)
 	
 	add_child(coin)
-	
-	
-func _on_game_area_body_shape_exited(body_rid, body, body_shape_index, local_shape_index):
-	if body == $Snake:	
-		$Snake.outside_bounds.emit()
+		
+		
 
 
 func _on_snake_collided(collision_info):
@@ -61,5 +63,6 @@ func _on_snake_collided(collision_info):
 	if collider == $Coin:
 		score += 1
 		$HUD.update_score(score)
-		remove_child(collider)
+		$Snake.grow()
+		remove_child	(collider)
 		create_coin()
